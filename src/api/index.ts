@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: process.env.VITE_API_URL || 'http://localhost:3000',
-  withCredentials: true
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000',
+  withCredentials: true,
 });
 
 // Attach token automatically
@@ -29,5 +29,5 @@ export default {
   addPetsBulk: (customerId: string, pets: any[]) =>
     apiClient.post(`/customers/${customerId}/pets/bulk`, pets),
   updatePet: (petId: string, pet: any) => apiClient.put(`/customers/pet/${petId}`, pet),
-  deletePet: (petId: string) => apiClient.delete(`/customers/${petId}`)
+  deletePet: (petId: string) => apiClient.delete(`/customers/${petId}`),
 };
